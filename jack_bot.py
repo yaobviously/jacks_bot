@@ -4,20 +4,22 @@ Created on Wed Apr 12 19:12:18 2023
 
 @author: yaobv
 """
-
+import os
 import openai
 import streamlit as st
-from streamlit_chat import message
-from dotenv import dotenv_values
 
-config = dotenv_values('.env')
+from streamlit_chat import message
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Setting page title and header
 st.set_page_config(page_title="Jack's Bot", page_icon=":robot_face:")
 st.markdown("<h1 style='text-align: center;'>Jack's Personal Bot 😬</h1>", unsafe_allow_html=True)
 
 # Set org ID and API key
-openai.organization = config['OPENAI_ORG']
-openai.api_key = config['OPENAI_KEY']
+openai.organization = os.environ.get('OPENAI_ORG')
+openai.api_key = os.environ.get('OPENAI_KEY')
 
 # Initialise session state variables
 if 'generated' not in st.session_state:
