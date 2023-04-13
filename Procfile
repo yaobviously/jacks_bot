@@ -1,1 +1,1 @@
-web: streamlit run jack_bot.py
+web: sh setup.sh && streamlit run jack_bot.py
