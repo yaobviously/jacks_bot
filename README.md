@@ -8,4 +8,6 @@ I included the running cost of using the app because my son likes numbers. It se
 
 In future I'd like to add text streaming as well as 'suggested' quesetions or question-stems for my son to use, e.g., "How does _____ work?" "Why does X happen?" I'll put these Jack-prompts alongside the main chat to give him some ideas for how to continue the conversation.
 
-This app was to give my son a fun and engaging way to learn how interact with the latest technology. So far, he seems to really enjoy it. 
+This app was to give my son a fun and engaging way to learn how interact with the latest technology. So far, he seems to really enjoy it.
+
+You can check it out [here](jack-chat.herokuapp.com/). 
