@@ -133,8 +133,8 @@ with container:
 
 if st.session_state['generated']:
     with response_container:
-        for i in range(len(st.session_state['generated'])):
-            message(st.session_state["past"][i], is_user=True, key=str(i) + '_user')
-            message(st.session_state["generated"][i], key=str(i))
+            message(st.session_state["past"][-1], is_user=True, key='_user')
+            message(st.session_state["generated"][-1], key='bot')
+            print(st.session_state["generated"])
             st.write(
-                f"Model used: {st.session_state['model_name'][i]}; Number of tokens: {st.session_state['total_tokens'][i]}; Cost: ${st.session_state['cost'][i]:.5f}")
+                f"Model used: {st.session_state['model_name'][-1]}; Number of tokens: {st.session_state['total_tokens'][-1]}; Cost: ${st.session_state['cost'][-1]:.5f}")
