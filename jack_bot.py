@@ -57,7 +57,7 @@ elif why_question:
 elif when_question:
     text = 'When was that'
 elif who_question:
-    text = 'Who invented the'
+    text = 'Who invented the..'
 elif where_question:
     text = 'Where in the world is'
 elif what_question:
