@@ -13,15 +13,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Setting page title and header
+# defining page header
 st.set_page_config(page_title="Jack's Bot", page_icon=":robot_face:")
 st.markdown("<h1 style='text-align: center;'>Jack's Personal Bot 😬</h1>", unsafe_allow_html=True)
 
-# Set org ID and API key
+# setting org and key
 openai.organization = os.environ.get('OPENAI_ORG')
 openai.api_key = os.environ.get('OPENAI_KEY')
 
-# Initialise session state variables
+# initializing state variables
 if 'generated' not in st.session_state:
     st.session_state['generated'] = []
 if 'past' not in st.session_state:
@@ -39,7 +39,7 @@ if 'total_tokens' not in st.session_state:
 if 'total_cost' not in st.session_state:
     st.session_state['total_cost'] = 0.0
 
-# Sidebar - let user choose model, show total cost of current conversation, and let user clear the current conversation
+# sidebar with suggested questions that i can modify now and again
 st.sidebar.title("Suggestions")
 
 how_question = st.sidebar.button("How do I..", key='how')
@@ -55,9 +55,9 @@ if how_question:
 elif why_question:
     text = 'Why does it'
 elif when_question:
-    text = 'What was the'
+    text = 'When was that'
 elif who_question:
-    text = 'Who did'
+    text = 'Who invented the'
 elif where_question:
     text = 'Where in the world is'
 elif what_question:
@@ -65,7 +65,7 @@ elif what_question:
 else:
     text = ''
     
-# Map model names to OpenAI model IDs
+# map model names to openai names. gpt3.5 for now
 model_name = "GPT-3.5"
 
 if model_name == "GPT-3.5":
