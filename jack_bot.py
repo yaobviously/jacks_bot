@@ -40,13 +40,34 @@ if 'total_cost' not in st.session_state:
     st.session_state['total_cost'] = 0.0
 
 # Sidebar - let user choose model, show total cost of current conversation, and let user clear the current conversation
-st.sidebar.title("Sidebar")
-model_name = st.sidebar.radio("Choose a model:", ("GPT-3.5", "GPT-4"))
-counter_placeholder = st.sidebar.empty()
-counter_placeholder.write(f"Total cost of this conversation: ${st.session_state['total_cost']:.5f}")
+st.sidebar.title("Suggestions")
+
+how_question = st.sidebar.button("How do I..", key='how')
+why_question = st.sidebar.button("Why does it..", key='why')
+when_question = st.sidebar.button("When was the..", key='when')
+who_question = st.sidebar.button("Who invented the..", key='who')
+where_question = st.sidebar.button("Where in the world is", key='where')
+what_question = st.sidebar.button("What is a..", key='what')
 clear_button = st.sidebar.button("Clear Conversation", key="clear")
 
+if how_question:
+    text = 'How do I'
+elif why_question:
+    text = 'Why does it'
+elif when_question:
+    text = 'What was the'
+elif who_question:
+    text = 'Who did'
+elif where_question:
+    text = 'Where in the world is'
+elif what_question:
+    text = 'What is a'
+else:
+    text = ''
+    
 # Map model names to OpenAI model IDs
+model_name = "GPT-3.5"
+
 if model_name == "GPT-3.5":
     model = "gpt-3.5-turbo"
 else:
@@ -64,7 +85,6 @@ if clear_button:
     st.session_state['cost'] = []
     st.session_state['total_cost'] = 0.0
     st.session_state['total_tokens'] = []
-    counter_placeholder.write(f"Total cost of this conversation: ${st.session_state['total_cost']:.5f}")
 
 
 # generate a response
@@ -92,7 +112,7 @@ container = st.container()
 
 with container:
     with st.form(key='my_form', clear_on_submit=True):
-        user_input = st.text_area("You:", key='input', height=100)
+        user_input = st.text_area("You:", key='input', height=100, value=text)
         submit_button = st.form_submit_button(label='Send')
 
     if submit_button and user_input:
@@ -118,4 +138,3 @@ if st.session_state['generated']:
             message(st.session_state["generated"][i], key=str(i))
             st.write(
                 f"Model used: {st.session_state['model_name'][i]}; Number of tokens: {st.session_state['total_tokens'][i]}; Cost: ${st.session_state['cost'][i]:.5f}")
-            counter_placeholder.write(f"Total cost of this conversation: ${st.session_state['total_cost']:.5f}")
